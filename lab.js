@@ -92,11 +92,55 @@ const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,
 
 // console.log(data);
 
-// 
-  [ 'ID', 'Name', 'Occupation', 'Age' ],
-  [ '42', 'Bruce', 'Knight', '41' ],
-  [ '57', 'Bob', 'Fry Cook', '19' ],
-  [ '63', 'Blaine', 'Quiz Master', '58' ],
-  [ '98', 'Bill', "Doctor's Assistant", '26' ]
+// // 
+//   [ 'ID', 'Name', 'Occupation', 'Age' ],
+//   [ '42', 'Bruce', 'Knight', '41' ],
+//   [ '57', 'Bob', 'Fry Cook', '19' ],
+//   [ '63', 'Blaine', 'Quiz Master', '58' ],
+//   [ '98', 'Bill', "Doctor's Assistant", '26' ]
 
 // Part 3
+
+//separating into rows
+
+const rows = str.split('\n');
+const firstRow = rows[0].split(',');
+const numColumns = firstRow.length;
+
+const data = [];
+for (let i = 0; i < rows.length; i++) {
+  const currentRow = rows[i].split(',');
+  data.push(currentRow);
+}
+
+console.log("2D Array:", data);
+
+// PART 2: 
+//  Chnage headers to lowercase
+const headers = data[0];
+const lowercaseHeaders = [];
+
+for (let i = 0; i < headers.length; i++) {
+  lowercaseHeaders.push(headers[i].toLowerCase());
+}
+
+console.log("Lowercase headers:", lowercaseHeaders); 
+
+
+//create array of objects - don't use the 1st row of headers
+const objectArray = [];
+
+for (let i = 1; i < data.length; i++) {
+  const rowObject = {};
+  
+  // Loop through each column in the current row
+  for (let j = 0; j < lowercaseHeaders.length; j++) {
+    const key = lowercaseHeaders[j];
+    const value = data[i][j];
+    rowObject[key] = value;
+  }
+  
+  objectArray.push(rowObject);
+}
+
+console.log("Result:", objectArray);
