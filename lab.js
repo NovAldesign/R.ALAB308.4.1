@@ -70,24 +70,33 @@
 
 const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
 
-// // Array
+// // // Array
+// Part 2
+// // Split the string into rows
+// const rows = str.split('\n');
 
-// Split the string into rows
-const rows = str.split('\n');
+// // Split the first row to determine number of columns 
+// const firstRow = rows[0].split(',');
+// const numColumns = firstRow.length;
 
-// Split the first row to determine number of columns 
-const firstRow = rows[0].split(',');
-const numColumns = firstRow.length;
+// console.log(`Number of columns: ${numColumns}`); 
 
-console.log(`Number of columns: ${numColumns}`); 
+// // Create the two-dimensional array
+// const data = [];
 
-// Create the two-dimensional array
-const data = [];
+// // Loop through each row, split by commas
+// for (let i = 0; i < rows.length; i++) {
+//   const currentRow = rows[i].split(',');
+//   data.push(currentRow);
+// }
 
-// Loop through each row, split by commas
-for (let i = 0; i < rows.length; i++) {
-  const currentRow = rows[i].split(',');
-  data.push(currentRow);
-}
+// console.log(data);
 
-console.log(data);
+// 
+  [ 'ID', 'Name', 'Occupation', 'Age' ],
+  [ '42', 'Bruce', 'Knight', '41' ],
+  [ '57', 'Bob', 'Fry Cook', '19' ],
+  [ '63', 'Blaine', 'Quiz Master', '58' ],
+  [ '98', 'Bill', "Doctor's Assistant", '26' ]
+
+// Part 3
