@@ -11,7 +11,7 @@
 //  // console.log(cell1, cell2, cell3, cell4);
 //  // Looping over the string
 
-//What is the input?
+// What is the input?
 // // string
 
 // What do they want (for output, datatype/format)?
@@ -25,7 +25,7 @@
 // let cell2 = "";
 // let cell3 = "";
 // let cell4 = "";
-// // Ceels track of commas / cells
+// // Cells track of commas / cells
 // let commas = 0;
 
 // // Looped over entire string.
@@ -68,7 +68,26 @@
 
 //REFACTOR CODE
 
-let str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`; 
+const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
 
-Array
-let cells = ("cell1", "cell2", "cell3", "cell4");
+// // Array
+
+// Split the string into rows
+const rows = str.split('\n');
+
+// Split the first row to determine number of columns 
+const firstRow = rows[0].split(',');
+const numColumns = firstRow.length;
+
+console.log(`Number of columns: ${numColumns}`); 
+
+// Create the two-dimensional array
+const data = [];
+
+// Loop through each row, split by commas
+for (let i = 0; i < rows.length; i++) {
+  const currentRow = rows[i].split(',');
+  data.push(currentRow);
+}
+
+console.log(data);
