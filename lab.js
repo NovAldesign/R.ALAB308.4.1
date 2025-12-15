@@ -69,78 +69,54 @@
 //REFACTOR CODE
 
 const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
-
-// // // Array
 // Part 2
 // // Split the string into rows
-// const rows = str.split('\n');
+let rows = str.split("\n");
 
-// // Split the first row to determine number of columns 
-// const firstRow = rows[0].split(',');
-// const numColumns = firstRow.length;
+// Get the first row to determine number of columns
+let firstRow = rows[0].split(",");
+let numColumns = firstRow.length;
 
-// console.log(`Number of columns: ${numColumns}`); 
+console.log("Number of columns:", numColumns);
 
-// // Create the two-dimensional array
-// const data = [];
+// Create two-dimensional array
+let twoDArray = [];
 
-// // Loop through each row, split by commas
-// for (let i = 0; i < rows.length; i++) {
-//   const currentRow = rows[i].split(',');
-//   data.push(currentRow);
-// }
-
-// console.log(data);
-
-// // 
-//   [ 'ID', 'Name', 'Occupation', 'Age' ],
-//   [ '42', 'Bruce', 'Knight', '41' ],
-//   [ '57', 'Bob', 'Fry Cook', '19' ],
-//   [ '63', 'Blaine', 'Quiz Master', '58' ],
-//   [ '98', 'Bill', "Doctor's Assistant", '26' ]
-
-// Part 3
-
-//separating into rows
-
-const rows = str.split('\n');
-const firstRow = rows[0].split(',');
-const numColumns = firstRow.length;
-
-const data = [];
 for (let i = 0; i < rows.length; i++) {
-  const currentRow = rows[i].split(',');
-  data.push(currentRow);
+  let currentRow = rows[i].split(",");
+  twoDArray.push(currentRow);
 }
 
-console.log("2D Array:", data);
+console.log("Two-dimensional array:");
+console.log(twoDArray);
 
-// PART 2: 
-//  Chnage headers to lowercase
-const headers = data[0];
-const lowercaseHeaders = [];
+// Part 3
+// Get headers from the first row and convert to lowercase
+let headers = twoDArray[0];
+let lowercaseHeaders = [];
 
 for (let i = 0; i < headers.length; i++) {
   lowercaseHeaders.push(headers[i].toLowerCase());
 }
 
-console.log("Lowercase headers:", lowercaseHeaders); 
+// Create array of objects
 
+let arrayOfObjects = [];
 
-//create array of objects - don't use the 1st row of headers
-const objectArray = [];
-
-for (let i = 1; i < data.length; i++) {
-  const rowObject = {};
+for (let i = 1; i < twoDArray.length; i++) {
+  // Create a new object for this row
+  let obj = {};
   
-  // Loop through each column in the current row
-  for (let j = 0; j < lowercaseHeaders.length; j++) {
-    const key = lowercaseHeaders[j];
-    const value = data[i][j];
-    rowObject[key] = value;
+  // Loop through each column in this row
+  for (let j = 0; j < numColumns; j++) {
+    // Use the lowercase header as the key
+    // Use the current cell value as the value
+    obj[lowercaseHeaders[j]] = twoDArray[i][j];
   }
   
-  objectArray.push(rowObject);
+  // Add the completed object to array
+  arrayOfObjects.push(obj);
 }
 
-console.log("Result:", objectArray);
+console.log("Array of objects:");
+console.log(arrayOfObjects);
