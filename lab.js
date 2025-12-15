@@ -70,7 +70,7 @@
 
 const str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26`;
 // Part 2
-// // Split the string into rows
+/// Split the string into rows
 let rows = str.split("\n");
 
 // Get the first row to determine number of columns
@@ -91,7 +91,6 @@ console.log("Two-dimensional array:");
 console.log(twoDArray);
 
 // Part 3
-// Get headers from the first row and convert to lowercase
 let headers = twoDArray[0];
 let lowercaseHeaders = [];
 
@@ -100,7 +99,7 @@ for (let i = 0; i < headers.length; i++) {
 }
 
 // Create array of objects
-
+// Start at index 1 to skip the heading row
 let arrayOfObjects = [];
 
 for (let i = 1; i < twoDArray.length; i++) {
@@ -114,9 +113,65 @@ for (let i = 1; i < twoDArray.length; i++) {
     obj[lowercaseHeaders[j]] = twoDArray[i][j];
   }
   
-  // Add the completed object to array
+  // Add the completed object to our array
   arrayOfObjects.push(obj);
 }
 
 console.log("Array of objects:");
 console.log(arrayOfObjects);
+
+// Part 4 - Not sure where I went wrong here.
+
+// Remove the last element
+arrayOfObjects.pop();
+console.log("After removing last element:");
+console.log(arrayOfObjects);
+
+// Insert object at index 1
+arrayOfObjects.splice(1, { id: "48", name: "Barry", occupation: "Runner", age: "25" });
+console.log("\nAfter inserting Barry at index 1:");
+console.log(arrayOfObjects);
+
+// Add object to the end
+arrayOfObjects.push({ id: "7", name: "Bilbo", occupation: "None", age: 111 });
+console.log("\nAfter adding Bilbo to the end:");
+console.log(arrayOfObjects);
+
+// Calculate average age
+let totalAge = 0;
+
+for (let i = 0; i < arrayOfObjects.length; i++) {
+  totalAge += arrayOfObjects[i].age;
+}
+
+let averageAge = totalAge / arrayOfObjects.length;
+console.log("\nAverage age:", averageAge);
+
+// Part 5
+// Get headers from the first object's keys
+let csvHeaders = Object.keys(arrayOfObjects[0]);
+
+// Capitalize first letter of each header
+let capitalizedHeaders = [];
+for (let i = 0; i < csvHeaders.length; i++) {
+  let header = csvHeaders[i];
+  capitalizedHeaders.push(header.charAt(0).toUpperCase() + header.slice(1));
+}
+
+// Create CSV string starting with headers
+let csvString = capitalizedHeaders.join(",");
+
+// Add each row of data
+for (let i = 0; i < arrayOfObjects.length; i++) {
+  csvString += "\n";
+  
+  let rowValues = [];
+  for (let j = 0; j < arrayOfObjects.length; j++) {
+    rowValues.push(arrayOfObjects[i][csvHeaders[j]]);
+  }
+  
+  csvString += rowValues.join(",");
+}
+
+console.log("Final CSV string:");
+console.log(csvString);
